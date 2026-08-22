@@ -34,7 +34,7 @@ LINE_COUNT=$(cat "$SESSIONS_FILE" | wc -l)
 
 if [ "$NUM" -lt "$LINE_COUNT" ]; then
 	while read -r TARGET_USER; do
-		echo "Cancel 1 session!" | write "$TARGET_uSER" 2>/dev/null
+		echo "Cancel 1 session!" | write "$TARGET_USER" 2>/dev/null
 		if [ $? -ne 0 ]; then
 			echo "Notice: Tried to message $TARGET_USER, but message could not be delivered!"
 		fi
