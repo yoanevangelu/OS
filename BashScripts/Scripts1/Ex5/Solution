@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [ "$#" -eq 0 ]; then
-	echo "Usage: $0 <user_id1> [user_id2 ...]"
+	echo "Usage: $0 <user_id1> ... <user_idN>"
 	exit 1
 fi
 
@@ -25,7 +25,7 @@ fi
 if [ "$CONDITION_MET" = true ]; then
 	ADDED_COUNT=0
 
-	for USER_ID in "$@"; do
+	for USER_ID; do
 		if ! grep -q "^${USER_ID}$" "$UNAMES_FILE"; then
 			echo "$USER_ID" >> "$UNAMES_FILE"
 			((ADDED_COUNT++))

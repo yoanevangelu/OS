@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+if [ $# -ne 12 ]
+then echo "Usage: $0 <ID1> ... <ID11> <number>"
+     exit 1
+fi
+
+NUM="${12}"
+
+read -p "Enter an existing directory: " DIR
+
+if [ ! -d "$DIR" ]
+then echo "$DIR is not a valid directory!"
+     exit 1
+fi
+
+SESSIONS_FILE="$DIR/sessions"
+
+> "$SESSIONS_FILE"
+
+for USER in "${@:1:11}"
+do COUNT=$(users | tr ' ' '\n' | grep -c "^$USER$")
+   echo "$COUNT"
+   if [ "$COUNT" -gt 2 ]
+   then echo "$USER" >> "$SESSIONS_FILE"
+   fi
+done
+
+if [ "$NUM" -lt $(wc -l < "$SESSIONS_FILE") ]
+then while read -r TARGET_USER
+     do echo "Cancel 1 session!" | write "$TARGET_USER" 2>/dev/null
+        if [ $? -ne 0 ]
+        then echo "Message failed to deliver to $TARGET_USER"
+        fi
+     done < "$SESSIONS_FILE"
+fi
