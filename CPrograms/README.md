@@ -4,7 +4,7 @@ A collection of C programs implementing operating systems concepts and solving s
 
 The repository is structured progressively, starting from fundamental OS concepts and moving towards more complex synchronization, process management, and inter-process communication (IPC) challenges.
 
-## 📂 Repository Structure
+## Repository Structure
 
 The subfolders are organized by increasing difficulty and complexity.
 
@@ -15,6 +15,9 @@ The subfolders are organized by increasing difficulty and complexity.
 * A modern C compiler (GCC or Clang)
 
 ### Usage
-```bash
+```
    gcc [options] <file_name> -o <bin_name>
-```  
+```
+```bash
+   ./bin_name
+```
